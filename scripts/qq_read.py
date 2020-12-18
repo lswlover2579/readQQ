@@ -459,6 +459,7 @@ def qq_read():
             start_time = time.time()
             title = f'☆【企鹅读书】{beijing_datetime.strftime("%Y-%m-%d %H:%M:%S")} ☆'
             content = ''
+            bark_content = ''
 
             # 调用 track 接口，为保证输出结果美观，输出信息写在后面
             track_result = track(headers=headers, body=body)
@@ -466,10 +467,12 @@ def qq_read():
             user_info = get_user_info(headers=headers)
             if user_info:
                 content += f'【用户昵称】{user_info["user"]["nickName"]}'
+                bark_content += f'【用户昵称】{user_info["user"]["nickName"]}'
             # 获取任务列表，查询金币余额
             daily_tasks = get_daily_tasks(headers=headers)
             if daily_tasks:
                 content += f'\n【金币余额】剩余{daily_tasks["user"]["amount"]}金币，可提现{daily_tasks["user"]["amount"] // 10000}元'
+               
             # 查询今日获得金币数量
             beijing_datetime_0 = beijing_datetime.strftime('%Y-%m-%d') + ' 00:00:00'
             today_coins_total = 0
@@ -488,6 +491,7 @@ def qq_read():
                     break
                 else:
                     content += f"\n【今日收益】{today_coins_total}金币，约{'{:4.2f}'.format(today_coins_total / 10000)}元"
+                    bark_content += f'\n{daily_tasks["user"]["amount"]}G/{today_coins_total}'
                     break
             # 查询本周阅读时长
             week_read_time = get_week_read_time(headers=headers)
@@ -660,15 +664,16 @@ def qq_read():
                 content += f'\n【自动提现】未启用该功能'
 
             content += f'\n🕛耗时：%.2f秒' % (time.time() - start_time)
-            content += f'\n如果帮助到您可以点下🌟STAR鼓励我一下，谢谢~'
+            #content += f'\n如果帮助到您可以点下🌟STAR鼓励我一下，谢谢~'
             print(title)
             print(content)
             # 每天 22:00 - 22:10 发送消息推送
-            if qq_read_config['notify'] and beijing_datetime.hour == 22 and beijing_datetime.minute <= 10:
+            if qq_read_config['notify'] and beijing_datetime.hour > 19 and beijing_datetime.minute <= 20:
                 notify.send(title=title, content=content, notify_mode=notify_mode)
+                notify.send(title=title, content=bark_content, notify_mode=notify_mode)
             elif not qq_read_config['notify']:
                 print('未进行消息推送，原因：未设置消息推送。如需发送消息推送，请确保配置文件的对应的脚本任务中，参数notify的值为true\n')
-            elif not beijing_datetime.hour == 22:
+            elif not beijing_datetime.hour < 22:
                 print('未进行消息推送，原因：没到对应的推送时间点\n')
             else:
                 print('未在规定的时间范围内\n')
