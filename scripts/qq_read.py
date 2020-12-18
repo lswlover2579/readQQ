@@ -458,6 +458,7 @@ def qq_read():
 
             start_time = time.time()
             title = f'☆【企鹅读书】{beijing_datetime.strftime("%Y-%m-%d %H:%M:%S")} ☆'
+            bark_title = f'☆{beijing_datetime.strftime("%Y-%m-%d %H:%M:%S")} ☆'
             content = ''
             bark_content = ''
 
@@ -670,7 +671,7 @@ def qq_read():
             # 每天 22:00 - 22:10 发送消息推送
             if qq_read_config['notify'] and beijing_datetime.hour > 19 and beijing_datetime.minute <= 20:
                 notify.send(title=title, content=content, notify_mode=notify_mode)
-                notify.send(title=title, content=bark_content, notify_mode=notify_mode)
+                notify.send(title=bark_title, content=bark_content, notify_mode=notify_mode)
             elif not qq_read_config['notify']:
                 print('未进行消息推送，原因：未设置消息推送。如需发送消息推送，请确保配置文件的对应的脚本任务中，参数notify的值为true\n')
             elif not beijing_datetime.hour <= 22:
