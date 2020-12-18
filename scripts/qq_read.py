@@ -468,7 +468,7 @@ def qq_read():
             user_info = get_user_info(headers=headers)
             if user_info:
                 content += f'【用户昵称】{user_info["user"]["nickName"]}'
-                bark_content += f'【用户昵称】{user_info["user"]["nickName"]}'
+                bark_content += f'{user_info["user"]["nickName"]}'
             # 获取任务列表，查询金币余额
             daily_tasks = get_daily_tasks(headers=headers)
             if daily_tasks:
@@ -492,7 +492,7 @@ def qq_read():
                     break
                 else:
                     content += f"\n【今日收益】{today_coins_total}金币，约{'{:4.2f}'.format(today_coins_total / 10000)}元"
-                    bark_content += f'\n{daily_tasks["user"]["amount"]}G/{today_coins_total}'
+                    bark_content += f'\n{daily_tasks["user"]["amount"]}/{today_coins_total}'
                     break
             # 查询本周阅读时长
             week_read_time = get_week_read_time(headers=headers)
@@ -674,7 +674,7 @@ def qq_read():
                 notify.send(title=bark_title, content=bark_content, notify_mode=notify_mode)
             elif not qq_read_config['notify']:
                 print('未进行消息推送，原因：未设置消息推送。如需发送消息推送，请确保配置文件的对应的脚本任务中，参数notify的值为true\n')
-            elif not beijing_datetime.hour <= 5:
+            elif not beijing_datetime.hour > 5:
                 print('未进行消息推送，原因：没到对应的推送时间点\n')
             else:
                 print('未在规定的时间范围内\n')
