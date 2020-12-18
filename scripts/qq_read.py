@@ -492,7 +492,7 @@ def qq_read():
                     break
                 else:
                     content += f"\n【今日收益】{today_coins_total}金币，约{'{:4.2f}'.format(today_coins_total / 10000)}元"
-                    bark_content += f'\n{daily_tasks["user"]["amount"]}/{today_coins_total}'
+                    bark_content += f'\nTotal{daily_tasks["user"]["amount"]}\nDaily:{today_coins_total}'
                     break
             # 查询本周阅读时长
             week_read_time = get_week_read_time(headers=headers)
@@ -670,8 +670,8 @@ def qq_read():
             print(content)
             # 每天 22:00 - 22:10 发送消息推送
             if qq_read_config['notify'] and beijing_datetime.hour > 5 and beijing_datetime.minute <= 20:
-                notify.send(title=title, content=content, notify_mode=notify_mode)
-                notify.send(title=bark_title, content=bark_content, notify_mode=notify_mode)
+                notify. telegram_bot(tg_bot_token= TG_BOT_TOKEN, tg_user_id= TG_USER_ID, title=title, content=content)
+                notify.bark('z6xjupb3ZUikNYme3Hrd99',title=bark_title, content=bark_content)
             elif not qq_read_config['notify']:
                 print('未进行消息推送，原因：未设置消息推送。如需发送消息推送，请确保配置文件的对应的脚本任务中，参数notify的值为true\n')
             elif not beijing_datetime.hour > 5:
