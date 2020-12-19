@@ -458,7 +458,7 @@ def qq_read():
 
             start_time = time.time()
             title = f'☆【企鹅读书】{beijing_datetime.strftime("%Y-%m-%d %H:%M:%S")} ☆'
-            bark_title = f'☆{beijing_datetime.strftime("%Y-%m-%d %H:%M:%S")} ☆'
+            bark_title = f'☆{symbol}☆'
             content = ''
             bark_content = ''
 
@@ -468,7 +468,7 @@ def qq_read():
             user_info = get_user_info(headers=headers)
             if user_info:
                 content += f'【用户昵称】{user_info["user"]["nickName"]}'
-                bark_content += f'{user_info["user"]["nickName"]}'
+                bark_title = f'☆{user_info["user"]["nickName"]}☆'
             # 获取任务列表，查询金币余额
             daily_tasks = get_daily_tasks(headers=headers)
             if daily_tasks:
