@@ -451,7 +451,6 @@ def qq_read():
             body = account['BODY']
             withdraw = account['WITHDRAW']
             hosting_mode = account['HOSTING_MODE']
-            bark_machine_code = config['notify']['type']['bark']['BARK_MACHINE_CODE']
             utc_datetime, beijing_datetime = get_standard_time()
             symbol = '=' * 16
             print(
