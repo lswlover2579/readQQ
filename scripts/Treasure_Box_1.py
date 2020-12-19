@@ -207,8 +207,8 @@ def qq_read():
                 bark_title = f'☆{user_info["user"]["nickName"]}☆'
             # 获取任务列表，查询金币余额
             daily_tasks = get_daily_tasks(headers=headers)
-            
-            # 开宝箱领金币 
+            print('Before OPEN treasureBox')
+            # 开宝箱领金币
             if daily_tasks['treasureBox']['doneFlag'] == 0:
                 print('Before treasureBox')
                 treasure_box_reward = open_treasure_box(headers=headers)
