@@ -492,7 +492,7 @@ def qq_read():
                     break
                 else:
                     content += f"\n【今日收益】{today_coins_total}金币，约{'{:4.2f}'.format(today_coins_total / 10000)}元"
-                    bark_content += f'Balance:{daily_tasks["user"]["amount"]}\n   Daily:{today_coins_total}'
+                    bark_content += f'Daily:{today_coins_total}\nBalance:{daily_tasks["user"]["amount"]}'
                     break
             # 查询本周阅读时长
             week_read_time = get_week_read_time(headers=headers)
