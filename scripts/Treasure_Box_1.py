@@ -208,7 +208,7 @@ def qq_read():
             # 获取任务列表，查询金币余额
             daily_tasks = get_daily_tasks(headers=headers)
             
-            # 开宝箱领金币
+            # 开宝箱领金币 
             if daily_tasks['treasureBox']['doneFlag'] == 0:
                 print('Before treasureBox')
                 treasure_box_reward = open_treasure_box(headers=headers)
