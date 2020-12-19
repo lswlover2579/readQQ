@@ -477,7 +477,7 @@ def qq_read():
                 treasure_box_reward = open_treasure_box(headers=headers)
                 if treasure_box_reward:
                     content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
-                    
+                    bark_content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
             # 宝箱金币奖励翻倍
             daily_tasks = get_daily_tasks(headers=headers)
             if daily_tasks['treasureBox']['videoDoneFlag'] == 0:
@@ -485,6 +485,8 @@ def qq_read():
                 if treasure_box_ads_reward:
                     content += f"\n【宝箱奖励翻倍】获得{treasure_box_ads_reward['amount']}金币"
 
+            notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
+            notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
 def main():
     qq_read()
 
