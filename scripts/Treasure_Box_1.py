@@ -227,8 +227,9 @@ def qq_read():
                 if treasure_box_ads_reward:
                     content += f"\n【宝箱奖励翻倍】获得{treasure_box_ads_reward['amount']}金币"
             if treasure_box_reward:
-            	notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
-	            notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
+                notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
+                notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
+
 def main():
     qq_read()
 
