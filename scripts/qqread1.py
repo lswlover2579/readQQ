@@ -125,7 +125,6 @@ def watch_treasure_box_ads(headers):
         else:
             return
     except:
-        print('Treasure_Box ERROR')
         print(traceback.format_exc())
         return
 
@@ -179,7 +178,6 @@ def qq_read():
     max_read_time = qq_read_config['parameters']['MAX_READ_TIME']
     # 消息推送方式
     notify_mode = qq_read_config['notify_mode']
-   
 
     # 确定脚本是否开启执行模式
     if qq_read_config['enable']:
@@ -212,21 +210,25 @@ def qq_read():
             
             # 开宝箱领金币
             if daily_tasks['treasureBox']['doneFlag'] == 0:
+            	  print('Before treasureBox')
                 treasure_box_reward = open_treasure_box(headers=headers)
+                
+                print(f'after treasureBox type{type(treasure_box_reward)}')
+                print(f'treasurebox=={treasure_box_reward}')
                 if treasure_box_reward:
                     content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
                     bark_content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
             
-            
             # 宝箱金币奖励翻倍
             daily_tasks = get_daily_tasks(headers=headers)
             if daily_tasks['treasureBox']['videoDoneFlag'] == 0:
+            	  
                 treasure_box_ads_reward = watch_treasure_box_ads(headers=headers)
+                
                 if treasure_box_ads_reward:
                     content += f"\n【宝箱奖励翻倍】获得{treasure_box_ads_reward['amount']}金币"
-
             if treasure_box_reward:
-	            notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
+            	notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
 	            notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
 def main():
     qq_read()
