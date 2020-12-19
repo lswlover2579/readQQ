@@ -228,6 +228,9 @@ def qq_read():
                 if treasure_box_reward:
                     notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
                     notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
+            else:
+                print("宝箱冷却中...")
+                bark_content = 'Treasure_Box In Cool Down'
 
 def main():
     qq_read()
