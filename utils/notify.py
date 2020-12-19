@@ -125,7 +125,7 @@ def server_chan(sckey, title, content):
         # print(f'\n[⚠ /Scripts/utils/notify.py - server_chan(sckey, title, content) serverJ推送错误]\n{symbol}\n{traceback.format_exc()}{symbol}')
 
 
-def send(title, content, notify_mode):
+def send(mark,title, content, notify_mode):
     """
     使用 bark, telegram bot, dingding bot, serverJ 发送手机推送
     :param title:
@@ -136,7 +136,7 @@ def send(title, content, notify_mode):
         config_latest, config = read(skip_check_version=True)  # 调用utils包中的config.py的read函数并且跳过版本检测
         if config['notify']['enable']:
             for i in notify_mode:
-                if i == 'bark':
+                if i == 'bark' and mark == 'b':
                     # bark
                     bark_machine_code = config['notify']['type']['bark']['BARK_MACHINE_CODE']
                     if bark_machine_code:
@@ -144,7 +144,7 @@ def send(title, content, notify_mode):
                     else:
                         print('未启用 bark')
                     continue
-                elif i == 'dingding_bot':
+                elif i == 'dingding_bot' and mark == 'd':
                     # dingding
                     dd_bot_accsee_token = config['notify']['type']['dingding_bot']['DD_BOT_ACCESS_TOKEN']
                     dd_bot_secret = config['notify']['type']['dingding_bot']['DD_BOT_SECRET']
@@ -153,7 +153,7 @@ def send(title, content, notify_mode):
                     else:
                         print('未启用 钉钉机器人')
                     continue
-                elif i == 'telegram_bot':
+                elif i == 'telegram_bot' and mark == 't':
                     # telegram_bot
                     tg_bot_token = config['notify']['type']['telegram_bot']['TG_BOT_TOKEN']
                     tg_user_id = config['notify']['type']['telegram_bot']['TG_USER_ID']
@@ -162,7 +162,7 @@ def send(title, content, notify_mode):
                     else:
                         print('未启用 telegram机器人')
                     continue
-                elif i == 'server_chan':
+                elif i == 'server_chan' and mark == 's':
                     # serverChan
                     sckey = config['notify']['type']['server_chan']['SCKEY']
                     if sckey:
