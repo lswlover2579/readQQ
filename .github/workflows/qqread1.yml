@@ -1,4 +1,4 @@
-name: TreasureBox
+name: Treasure_Box_1
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r ./requirements.txt 
         
-      - name: '运行【TreasureBox】' 
-        run: python3 ./scripts/qqread1.py 
+      - name: '运行【Treasure_Box_1】' 
+        run: python3 ./scripts/Treasure_Box_1.py 
         env:
             CONFIG: ${{ secrets.CONFIG }}
