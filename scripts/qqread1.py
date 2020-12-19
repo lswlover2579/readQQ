@@ -210,7 +210,7 @@ def qq_read():
             
             # 开宝箱领金币
             if daily_tasks['treasureBox']['doneFlag'] == 0:
-            	  print('Before treasureBox')
+            	print('Before treasureBox')
                 treasure_box_reward = open_treasure_box(headers=headers)
                 
                 print(f'after treasureBox type{type(treasure_box_reward)}')
