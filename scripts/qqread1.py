@@ -213,7 +213,7 @@ def qq_read():
                 treasure_box_reward = open_treasure_box(headers=headers)
                 if treasure_box_reward:
                     content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
-                    bark_content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
+                    bark_content += f"【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
             
             treasure_box_reward_mark = treasure_box_reward
             # 宝箱金币奖励翻倍
