@@ -673,7 +673,7 @@ def qq_read():
                 #notify.telegram_bot(tg_bot_token= TG_BOT_TOKEN, tg_user_id= TG_USER_ID, title=title, content=content)
                 #notify.bark(bark_machine_code= BARK_MACHINE_CODE,title=bark_title, content=bark_content)
                 notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
-                notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
+                #notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
             elif not qq_read_config['notify']:
                 print('未进行消息推送，原因：未设置消息推送。如需发送消息推送，请确保配置文件的对应的脚本任务中，参数notify的值为true\n')
             elif not beijing_datetime.hour > 5:
