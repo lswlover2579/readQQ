@@ -240,7 +240,7 @@ def qq_read():
             	if balance > 10:
             		bark_content += balance
             		notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
-            	time_content = 'Time CD...\n--T1'
+            	time_content = 'Time CD...\n--T3'
             	notify.send(mark='t',title=title, content= time_content, notify_mode=notify_mode)
 def main():
     qq_read()
