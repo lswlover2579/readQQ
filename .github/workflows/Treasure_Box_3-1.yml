@@ -3,7 +3,7 @@ name: Treasure_Box_3-1
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/3 * * * *'
+    - cron: '*/13 * * * *'
   watch:
     type: [started]
 
