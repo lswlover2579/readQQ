@@ -221,6 +221,7 @@ def qq_read():
             
             # 宝箱金币奖励翻倍
             daily_tasks = get_daily_tasks(headers=headers)
+            
             if daily_tasks['treasureBox']['videoDoneFlag'] == 0:
             	  
                 treasure_box_ads_reward = watch_treasure_box_ads(headers=headers)
@@ -230,9 +231,10 @@ def qq_read():
                 if treasure_box_reward:
                 	notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
                 	notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
-                else:
-                	time_content = 'Time CD....\n--T1'
-                	notify.send(mark='t',title=title, content= time_content, notify_mode=notify_mode)
+            else:
+            	print('Time CD..in log')
+            	time_content = 'Time CD...\n--T1'
+            	notify.send(mark='t',title=title, content= time_content, notify_mode=notify_mode)
 def main():
     qq_read()
 
