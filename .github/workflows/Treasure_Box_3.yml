@@ -1,4 +1,4 @@
-name: Treasure_Box_2
+name: Treasure_Box_3
 
 on:
   workflow_dispatch:
