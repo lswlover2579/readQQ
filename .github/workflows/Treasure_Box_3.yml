@@ -24,7 +24,7 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r ./requirements.txt 
         
-      - name: '运行【Treasure_Box_2】' 
+      - name: '运行【Treasure_Box_3】' 
         run: python3 ./scripts/Treasure_Box_2.py 
         env:
             CONFIG: ${{ secrets.CONFIG }}
