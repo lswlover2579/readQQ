@@ -1,0 +1,30 @@
+name: Treasure_Box_3-1
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/3 * * * *'
+  watch:
+    type: [started]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+         
+      - name: 'Install requirements'
+        run: pip install -r ./requirements.txt 
+        
+      - name: '运行【Treasure_Box_3】' 
+        run: python3 ./scripts/Treasure_Box_3.py 
+        env:
+            CONFIG: ${{ secrets.CONFIG }}
