@@ -232,12 +232,12 @@ def qq_read():
                 if treasure_box_ads_reward:
                     content += f"\n【宝箱奖励翻倍】获得{treasure_box_ads_reward['amount']}金币"
                 if balance > 10:
-                	bark_content += str(balance)
+                	bark_content += '恭喜获得十元现金红包\n前去QQ领钱💰'
                 	notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
             else:
             	print('Time CD..in log')
             	if balance > 10:
-            		bark_content += str(balance)
+            		bark_content += '恭喜获得十元现金红包\n前去QQ领钱💰'
             		notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
             	time_content = 'Time CD...\n--T1'
             	#notify.send(mark='t',title=title, content= time_content, notify_mode=notify_mode)
