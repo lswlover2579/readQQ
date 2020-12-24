@@ -669,7 +669,7 @@ def qq_read():
             print(title)
             print(content)
             # 每天 22:00 - 22:10 发送消息推送
-            if qq_read_config['notify'] and beijing_datetime.hour > 5 and beijing_datetime.minute <= 20:
+            if qq_read_config['notify'] and beijing_datetime.hour > 23 and beijing_datetime.minute >= 10:
                 #notify.telegram_bot(tg_bot_token= TG_BOT_TOKEN, tg_user_id= TG_USER_ID, title=title, content=content)
                 #notify.bark(bark_machine_code= BARK_MACHINE_CODE,title=bark_title, content=bark_content)
                 notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
