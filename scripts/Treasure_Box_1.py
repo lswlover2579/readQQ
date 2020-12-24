@@ -217,7 +217,7 @@ def qq_read():
                 print(f'treasurebox=={treasure_box_reward}')
                 if treasure_box_reward:
                     content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
-                    bark_content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
+                    #bark_content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
                     #notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
             
             # 宝箱金币奖励翻倍
