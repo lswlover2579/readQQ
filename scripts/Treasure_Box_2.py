@@ -200,47 +200,53 @@ def qq_read():
 
             # 调用 track 接口，为保证输出结果美观，输出信息写在后面
             track_result = track(headers=headers, body=body)
-            # 获取用户信息（昵称）
-            user_info = get_user_info(headers=headers)
-            if user_info:
-                content += f'【用户昵称】{user_info["user"]["nickName"]}'
-                bark_title = f'☆{user_info["user"]["nickName"]}☆'
-            # 获取任务列表，查询金币余额
-            daily_tasks = get_daily_tasks(headers=headers)
-            
-            # 开宝箱领金币
-            if daily_tasks['treasureBox']['doneFlag'] == 0:
-                print('Before treasureBox')
-                treasure_box_reward = open_treasure_box(headers=headers)
-                
-                print(f'after treasureBox type{type(treasure_box_reward)}')
-                print(f'treasurebox=={treasure_box_reward}')
-                if treasure_box_reward:
-                    content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
-                    #bark_content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
-                    #notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
-            
-            # 宝箱金币奖励翻倍
-            daily_tasks = get_daily_tasks(headers=headers)
-            
-            balance = daily_tasks["user"]["amount"] // 10000
-            
-            if daily_tasks['treasureBox']['videoDoneFlag'] == 0:
-            	  
-                treasure_box_ads_reward = watch_treasure_box_ads(headers=headers)
-                
-                if treasure_box_ads_reward:
-                    content += f"\n【宝箱奖励翻倍】获得{treasure_box_ads_reward['amount']}金币"
-                if balance > 10:
-                	bark_content += '恭喜获得十元现金红包\n前去QQ领钱💰'
-                	notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
-            else:
-            	print('Time CD..in log')
-            	if balance > 10:
-            		bark_content += '恭喜获得十元现金红包\n前去QQ领钱💰'
-            		notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
-            	time_content = 'Time CD...\n--T1'
-            	#notify.send(mark='t',title=title, content= time_content, notify_mode=notify_mode)
+            try:
+	            # 获取用户信息（昵称）
+	            user_info = get_user_info(headers=headers)
+	            if user_info:
+	                content += f'【用户昵称】{user_info["user"]["nickName"]}'
+	                bark_title = f'☆{user_info["user"]["nickName"]}☆'
+	            # 获取任务列表，查询金币余额
+	            daily_tasks = get_daily_tasks(headers=headers)
+	            
+	            # 开宝箱领金币
+	            if daily_tasks['treasureBox']['doneFlag'] == 0:
+	                print('Before treasureBox')
+	                treasure_box_reward = open_treasure_box(headers=headers)
+	                
+	                print(f'after treasureBox type{type(treasure_box_reward)}')
+	                print(f'treasurebox=={treasure_box_reward}')
+	                if treasure_box_reward:
+	                    content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
+	                    bark_content += f"\n【开启第{treasure_box_reward['count']}个宝箱】获得{treasure_box_reward['amount']}金币"
+	                    #notify.send(mark='t',title=title, content=content, notify_mode=notify_mode)
+	            
+	            # 宝箱金币奖励翻倍
+	            daily_tasks = get_daily_tasks(headers=headers)
+	            
+	            balance = daily_tasks["user"]["amount"] // 10000
+	            
+	            if daily_tasks['treasureBox']['videoDoneFlag'] == 0:
+	            	  
+	                treasure_box_ads_reward = watch_treasure_box_ads(headers=headers)
+	                
+	                if treasure_box_ads_reward:
+	                    content += f"\n【宝箱奖励翻倍】获得{treasure_box_ads_reward['amount']}金币"
+	                if balance > 10:
+	                	bark_content += '🎉恭喜获得十元现金红包\n前往QQ领取！'
+	                	notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
+	            else:
+	            	print('Time CD..in log')
+	            	if balance > 10:
+	            		bark_content += '🎉恭喜获得十元现金红包\n前往QQ领取！'
+	            		notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
+	            	time_content = 'Time CD...\n--T2'
+	            	#notify.send(mark='t',title=title, content= time_content, notify_mode=notify_mode)
+            except:
+            	print('cookie需更新！')
+            	bark_title = 'Error'
+            	bark_content = 'cookie需更新！'
+            	notify.send(mark='b',title=bark_title, content=bark_content, notify_mode=notify_mode)
 def main():
     qq_read()
 
