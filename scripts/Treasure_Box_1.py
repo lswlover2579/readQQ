@@ -202,8 +202,9 @@ def qq_read():
             track_result = track(headers=headers, body=body)
             # 获取用户信息（昵称）
             user_info = get_user_info(headers=headers)
+            print(user_info,'\n')
             if user_info:
-                content += f'【用户昵称】{user_info["user"]["nickName"]}'
+                #content += f'【用户昵称】{user_info["user"]["nickName"]}'
                 bark_title = f'☆{user_info["user"]["nickName"]}☆'
             # 获取任务列表，查询金币余额
             daily_tasks = get_daily_tasks(headers=headers)
